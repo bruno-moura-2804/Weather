@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather - Atmosfera Premium</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="atmosphere">
+    <div class="atmosphere__layer layer--primary"></div>
+    <div class="atmosphere__layer layer--secondary"></div>
+    <div class="atmosphere__layer layer--tertiary"></div>
+    <canvas id="weatherCanvas" class="weather-canvas"></canvas>
+  </div>
+
+  <main class="app-container">
+    <!-- Header -->
+    <header class="header glass-surface">
+      <div class="header__content">
+        <div>
+          <p class="header__date" id="headerDate">Carregando...</p>
+          <h1 class="header__location" id="headerLocation">Localizando...</h1>
+          <p class="header__status" id="headerStatus">Obtendo dados climáticos</p>
+        </div>
+        <button class="location-btn" id="locationBtn" aria-label="Obter localização" title="Buscar sua localização">
+          <span class="material-symbols-rounded location-icon">location_on</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Weather Card -->
+    <section class="card card--hero glass-surface" id="heroCard">
+      <div class="hero-content">
+        <div class="weather-icon-main" id="mainWeatherIcon">
+          <span class="material-symbols-rounded">wb_sunny</span>
+        </div>
+        <div class="temperature-display">
+          <div class="temperature-main">
+            <span class="temperature-value" id="temperatureValue">--</span>
+            <span class="temperature-unit">°C</span>
+          </div>
+          <div class="temperature-info">
+            <p class="temperature-label">Temperatura Atual</p>
+            <p class="apparent-temp">
+              <span class="material-symbols-rounded icon-small">device_thermostat</span>
+              <span id="apparentTemp">Sensação: --°C</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Condition Indicators -->
+    <section class="indicators-grid glass-surface">
+      <div class="indicator">
+        <div class="indicator__header">
+          <span class="material-symbols-rounded">water_drop</span>
+          <p class="indicator__label">Precipitação</p>
+        </div>
+        <p class="indicator__value" id="precipitationValue">--%</p>
+        <div class="indicator__bar">
+          <div class="indicator__fill" id="precipitationFill"></div>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator__header">
+          <span class="material-symbols-rounded">cloud</span>
+          <p class="indicator__label">Nuvens</p>
+        </div>
+        <p class="indicator__value" id="cloudValue">--%</p>
+        <div class="indicator__bar">
+          <div class="indicator__fill" id="cloudFill"></div>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator__header">
+          <span class="material-symbols-rounded">visibility</span>
+          <p class="indicator__label">Visibilidade</p>
+        </div>
+        <p class="indicator__value" id="visibilityValue">-- km</p>
+        <div class="indicator__bar">
+          <div class="indicator__fill" id="visibilityFill"></div>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator__header">
+          <span class="material-symbols-rounded">light_mode</span>
+          <p class="indicator__label">UV Máximo</p>
+        </div>
+        <p class="indicator__value" id="uvValue">--</p>
+        <div class="indicator__bar">
+          <div class="indicator__fill" id="uvFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sun Times -->
+    <section class="sun-times glass-surface">
+      <div class="sun-time">
+        <div class="sun-time__header">
+          <span class="material-symbols-rounded">sunrise</span>
+          <p class="sun-label">Nascer</p>
+        </div>
+        <p class="sun-value" id="sunriseTime">--:--</p>
+      </div>
+      <div class="sun-divider"></div>
+      <div class="sun-time">
+        <div class="sun-time__header">
+          <span class="material-symbols-rounded">sunset</span>
+          <p class="sun-label">Pôr</p>
+        </div>
+        <p class="sun-value" id="sunsetTime">--:--</p>
+      </div>
+      <div class="sun-divider"></div>
+      <div class="sun-time">
+        <div class="sun-time__header">
+          <span class="material-symbols-rounded">schedule</span>
+          <p class="sun-label">Duração</p>
+        </div>
+        <p class="sun-value" id="sunDuration">-- h</p>
+      </div>
+    </section>
+
+    <!-- Hourly Forecast -->
+    <section class="forecast-section">
+      <h2 class="forecast-title">Previsão por Hora</h2>
+      <div class="hourly-scroll glass-surface" id="hourlyForecast"></div>
+    </section>
+
+    <!-- Daily Forecast -->
+    <section class="forecast-section">
+      <h2 class="forecast-title">Previsão Diária</h2>
+      <div class="daily-grid" id="dailyForecast"></div>
+    </section>
+
+    <div class="loading-skeleton" id="loadingSkeleton">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
